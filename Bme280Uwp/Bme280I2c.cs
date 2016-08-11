@@ -40,10 +40,11 @@ namespace Bme280Uwp
             var settings = new I2cConnectionSettings(I2C_ADDR);
             settings.BusSpeed = I2cBusSpeed.FastMode;
             _bme280Ic2 = await I2cDevice.FromIdAsync(dis[0].Id, settings);
-            if (_bme280Ic2 == null)
-            {
-                throw new Exception(string.Format("Device was not found. {0}, {1}", I2C_CONTROLLER_NAME, I2C_ADDR));
-            }
+            // XXX これでは有無はチェックできない
+            //if (_bme280Ic2 == null)
+            //{
+            //    throw new Exception(string.Format("Device was not found. {0}, {1}", I2C_CONTROLLER_NAME, I2C_ADDR));
+            //}
         }
 
         protected override void WriteRegister(byte address, byte data)
